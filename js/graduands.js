@@ -1,0 +1,7 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.querySelector('[data-graduands-grid]');
+  if (!grid) return;
+  grid.innerHTML = graduands.map((person) => `<article class="person-card reveal"><div class="avatar-wrap"><img src="${person.image}" alt="صورة تجريبية لـ ${person.arabicName}" loading="lazy" onerror="this.hidden=true;this.parentElement.classList.add('avatar-missing')"><span>${person.id.toLocaleString('ar-EG')}</span></div><div><h3>${person.arabicName}</h3><p>${person.englishName}</p><small>${person.hijriYear} / ${person.gregorianYear}</small>${person.researchId ? `<a class="text-link" href="research-details.html?id=${person.researchId}">البحث العلمي ←</a>` : ''}</div></article>`).join('');
+  grid.innerHTML = graduands.map((person) => `<article class="person-card reveal"><div class="avatar-wrap"><img src="${person.image}" alt="صورة تجريبية لـ ${person.arabicName}" loading="lazy" onerror="this.hidden=true;this.parentElement.classList.add('avatar-missing')"><span>${person.id.toLocaleString('ar-EG')}</span></div><div><h3>${person.arabicName}</h3>${person.englishName ? `<p>${person.englishName}</p>` : ''}<small>${person.hijriYear} / ${person.gregorianYear}</small>${person.researchId ? `<a class="text-link" href="research-details.html?id=${person.researchId}">البحث العلمي ←</a>` : ''}</div></article>`).join('');
+  requestAnimationFrame(() => grid.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible')));
+});
